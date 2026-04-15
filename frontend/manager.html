@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fleet Manager · SecureFleet</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="app">
+<aside class="sidebar">
+  <a href="index.html" class="brand">
+    <span class="brand-mark">SF</span>
+    <span class="brand-name">SecureFleet</span>
+  </a>
+  <nav class="sidenav">
+    <a href="manager.html" class="active">Dashboard</a>
+    <a href="manager.html#fleet">Fleet</a>
+    <a href="manager.html#planner">Trip planner</a>
+  </nav>
+  <div class="sidefoot">
+    <div id="user-chip" class="user-chip"></div>
+    <button id="logout" class="btn btn-ghost btn-sm">Sign out</button>
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1>Fleet manager</h1>
+      <p class="muted">Plan trips, monitor vehicles, and forecast fuel cost.</p>
+    </div>
+    <span class="badge badge-amber">MANAGER</span>
+  </header>
+
+  <section class="grid grid-4 stats">
+    <div class="stat"><span>Vehicles</span><strong id="stat-vehicles">–</strong></div>
+    <div class="stat"><span>Active</span><strong id="stat-active">–</strong></div>
+    <div class="stat"><span>Routes</span><strong id="stat-routes">–</strong></div>
+    <div class="stat"><span>Forecast spend</span><strong id="stat-spend">–</strong></div>
+  </section>
+
+  <section class="panel">
+    <header class="panel-header">
+      <h2>Live fleet map</h2>
+      <span class="muted small" id="map-status">Loading…</span>
+    </header>
+    <div id="map" class="map"></div>
+  </section>
+
+  <div class="grid grid-2">
+    <section id="fleet" class="panel">
+      <header class="panel-header"><h2>Fleet status</h2></header>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Plate</th><th>Status</th><th>Update</th></tr></thead>
+          <tbody id="vehicles-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="planner" class="panel">
+      <header class="panel-header"><h2>Fuel cost estimator</h2></header>
+      <form id="estimate-form" class="form compact">
+        <label><span>Vehicle</span><select id="vehicle-select"></select></label>
+        <label><span>Route</span><select id="route-select"></select></label>
+        <button type="submit" class="btn btn-primary">Estimate</button>
+      </form>
+      <div id="estimate-result" class="estimate" hidden>
+        <div><span>Distance</span><strong id="r-distance"></strong></div>
+        <div><span>Liters</span><strong id="r-liters"></strong></div>
+        <div><span>Price/L</span><strong id="r-price"></strong></div>
+        <div><span>Total</span><strong id="r-total"></strong></div>
+        <button id="create-trip" class="btn btn-ghost btn-sm">Create trip</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/map.js"></script>
+<script src="js/manager.js"></script>
+</body>
+</html>

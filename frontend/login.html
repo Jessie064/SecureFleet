@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign in — SecureFleet</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="auth-page">
+<div class="auth-card">
+  <a href="index.html" class="brand">
+    <span class="brand-mark">SF</span>
+    <span class="brand-name">SecureFleet</span>
+  </a>
+  <h1>Sign in</h1>
+  <p class="muted">Enter the email your admin registered for you.</p>
+
+  <form id="login-form" class="form" autocomplete="off">
+    <label>
+      <span>Email</span>
+      <input type="email" id="email" required placeholder="you@fleet.com" />
+    </label>
+    <label>
+      <span>Password</span>
+      <input type="password" id="password" required placeholder="••••••••" />
+    </label>
+    <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+    <p class="error" id="error" hidden></p>
+  </form>
+
+  <p class="muted small">
+    Your role is assigned by the admin. The bootstrap admin is
+    <code>admin@securefleet.io</code>. Any password works in demo mode.
+  </p>
+</div>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

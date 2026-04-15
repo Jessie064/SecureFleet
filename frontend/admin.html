@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin · SecureFleet</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="app">
+<aside class="sidebar">
+  <a href="index.html" class="brand">
+    <span class="brand-mark">SF</span>
+    <span class="brand-name">SecureFleet</span>
+  </a>
+  <nav class="sidenav">
+    <a href="#overview" data-view="overview" class="active">Overview</a>
+    <a href="#vehicles" data-view="vehicles">Vehicles</a>
+    <a href="#fuel" data-view="fuel">Fuel prices</a>
+    <a href="#users" data-view="users">Users</a>
+    <a href="#audit" data-view="audit">Audit log</a>
+  </nav>
+  <div class="sidefoot">
+    <div id="user-chip" class="user-chip"></div>
+    <button id="logout" class="btn btn-ghost btn-sm">Sign out</button>
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div>
+      <h1>Admin overview</h1>
+      <p class="muted">Full visibility across the fleet, users, and security posture.</p>
+    </div>
+    <span class="badge">ADMIN</span>
+  </header>
+
+  <section id="overview-stats" class="grid grid-4 stats view-overview">
+    <div class="stat"><span>Vehicles</span><strong id="stat-vehicles">–</strong></div>
+    <div class="stat"><span>Active</span><strong id="stat-active">–</strong></div>
+    <div class="stat"><span>Routes</span><strong id="stat-routes">–</strong></div>
+    <div class="stat"><span>Forecast spend</span><strong id="stat-spend">–</strong></div>
+  </section>
+
+  <section id="overview-map" class="panel view-overview">
+    <header class="panel-header">
+      <h2>Live fleet map</h2>
+      <span class="muted small" id="map-status">Loading…</span>
+    </header>
+    <div id="map" class="map"></div>
+  </section>
+
+  <section id="vehicles" class="panel">
+    <header class="panel-header">
+      <h2>Vehicles</h2>
+      <button class="btn btn-primary btn-sm" id="add-vehicle">+ Add vehicle</button>
+    </header>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Plate</th><th>Make / Model</th><th>Fuel</th><th>km/L</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody id="vehicles-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="fuel" class="panel">
+    <header class="panel-header">
+      <h2>Fuel prices</h2>
+      <span class="muted small">Admin only — changes affect all trip estimates</span>
+    </header>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Fuel type</th><th>Price per liter</th><th>Currency</th><th></th></tr>
+        </thead>
+        <tbody id="fuel-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="users" class="panel">
+    <header class="panel-header">
+      <h2>Users & roles</h2>
+      <button class="btn btn-primary btn-sm" id="add-user">+ Add user</button>
+    </header>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Email</th><th>Name</th><th>Role</th><th>Phone</th><th></th></tr></thead>
+        <tbody id="users-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="audit" class="panel">
+    <header class="panel-header"><h2>Recent audit events</h2></header>
+    <ul class="audit">
+      <li><span class="muted">just now</span> admin signed in</li>
+      <li><span class="muted">2m</span> manager updated FLT-002 status to active</li>
+      <li><span class="muted">14m</span> system rotated JWT signing key</li>
+    </ul>
+  </section>
+</main>
+
+<dialog id="user-dialog">
+  <form method="dialog" id="user-form" class="form">
+    <h3>Add user</h3>
+    <p class="muted small">Admin can only create manager or driver accounts.</p>
+    <label><span>Email</span><input name="email" type="email" required /></label>
+    <label><span>Full name</span><input name="fullName" required /></label>
+    <label><span>Role</span>
+      <select name="role">
+        <option value="manager">Fleet Manager</option>
+        <option value="driver">Driver</option>
+      </select>
+    </label>
+    <label><span>Phone (optional)</span><input name="phone" /></label>
+    <div class="form-actions">
+      <button type="button" id="cancel-user" class="btn btn-ghost">Cancel</button>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="vehicle-dialog">
+  <form method="dialog" id="vehicle-form" class="form">
+    <h3>Add vehicle</h3>
+    <label><span>Plate</span><input name="plate" required /></label>
+    <label><span>Make</span><input name="make" /></label>
+    <label><span>Model</span><input name="model" /></label>
+    <label><span>Year</span><input name="year" type="number" min="1990" max="2099" /></label>
+    <label><span>Fuel type</span>
+      <select name="fuelType"><option>diesel</option><option>gasoline</option></select>
+    </label>
+    <label><span>km / liter</span><input name="fuelEfficiencyKmpl" type="number" step="0.1" value="10" required /></label>
+    <div class="form-actions">
+      <button type="button" id="cancel-vehicle" class="btn btn-ghost">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/map.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

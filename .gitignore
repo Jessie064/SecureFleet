@@ -1,0 +1,24 @@
+# Build output
+bin/
+obj/
+out/
+*.user
+*.suo
+.vs/
+.vscode/
+
+# Local secrets — never commit
+backend/appsettings.Development.json
+backend/appsettings.Local.json
+backend/appsettings.*.Local.json
+*.env
+.env
+.env.*
+
+# Claude working state
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

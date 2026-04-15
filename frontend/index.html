@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SecureFleet — Zero Trust Fleet Monitoring</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="landing">
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">SF</span>
+      <span class="brand-name">SecureFleet</span>
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#security">Security</a>
+      <a href="#pricing">Pricing</a>
+      <a href="login.html" class="btn btn-primary">Sign in</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Zero Trust Fleet Operations</span>
+      <h1>Track every vehicle.<br/>Forecast every liter.</h1>
+      <p class="lede">SecureFleet gives logistics teams real-time vehicle tracking and route-based fuel cost estimation — protected end-to-end with a Zero Trust architecture.</p>
+      <div class="hero-cta">
+        <a href="login.html" class="btn btn-primary btn-lg">Open dashboard</a>
+        <a href="#features" class="btn btn-ghost btn-lg">See how it works</a>
+      </div>
+      <ul class="hero-stats">
+        <li><strong>99.9%</strong><span>uptime SLA</span></li>
+        <li><strong>&lt;200ms</strong><span>position updates</span></li>
+        <li><strong>SOC 2</strong><span>aligned controls</span></li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="card glass">
+        <div class="card-header">
+          <span class="dot dot-green"></span>
+          <span>Live fleet — 4 vehicles</span>
+        </div>
+        <div class="card-body">
+          <div class="row"><span>FLT-001</span><span class="muted">en route</span><span class="pill pill-green">active</span></div>
+          <div class="row"><span>FLT-002</span><span class="muted">depot</span><span class="pill pill-green">active</span></div>
+          <div class="row"><span>FLT-003</span><span class="muted">parked</span><span class="pill pill-amber">idle</span></div>
+          <div class="row"><span>FLT-004</span><span class="muted">workshop</span><span class="pill pill-red">maint</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="section">
+  <h2>Built for modern fleet operations</h2>
+  <div class="grid grid-3">
+    <div class="feature">
+      <div class="feature-icon">📍</div>
+      <h3>Real-time tracking</h3>
+      <p>Map-based positions for every vehicle, refreshed live with low-latency updates.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⛽</div>
+      <h3>Fuel forecasting</h3>
+      <p>Distance-based estimates per route — no sensors required, just plate, route, and price.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🛡️</div>
+      <h3>Zero Trust security</h3>
+      <p>JWT auth, role-based access, row-level security, and signed audit trails by default.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">👥</div>
+      <h3>Role-based dashboards</h3>
+      <p>Tailored views for admins, fleet managers, and drivers — each one only sees what they need.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📱</div>
+      <h3>Mobile ready</h3>
+      <p>Responsive layouts work on phones in the cab and tablets in dispatch.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🧭</div>
+      <h3>Route library</h3>
+      <p>Reusable origins and destinations with stored distances for repeatable planning.</p>
+    </div>
+  </div>
+</section>
+
+<section id="security" class="section section-alt">
+  <div class="two-col">
+    <div>
+      <span class="eyebrow">Security model</span>
+      <h2>Zero Trust, by default</h2>
+      <p class="lede">Every request is authenticated, authorized, and audited — with no implicit trust between services, users, or networks.</p>
+      <ul class="checklist">
+        <li>Short-lived JWTs validated on every API call</li>
+        <li>Row-level security in PostgreSQL for data isolation</li>
+        <li>Role-based access control (admin, manager, driver)</li>
+        <li>Strict CORS, HSTS, and CSP-style response headers</li>
+        <li>Audit log for all privileged actions</li>
+      </ul>
+    </div>
+    <div class="card glass">
+      <div class="card-header">Today's snapshot</div>
+      <div class="card-body big-stats">
+        <div><strong>4</strong><span>Vehicles</span></div>
+        <div><strong>3</strong><span>Routes</span></div>
+        <div><strong>₱54.10</strong><span>Forecast spend</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <h2>Simple pricing</h2>
+  <div class="grid grid-3">
+    <div class="price-card">
+      <h3>Starter</h3>
+      <div class="price">₱0</div>
+      <p>Up to 5 vehicles. Community support.</p>
+      <a href="login.html" class="btn btn-ghost">Try it</a>
+    </div>
+    <div class="price-card featured">
+      <h3>Operator</h3>
+      <div class="price">₱29<span>/vehicle/mo</span></div>
+      <p>Unlimited routes, audit log, RBAC, email support.</p>
+      <a href="login.html" class="btn btn-primary">Choose Operator</a>
+    </div>
+    <div class="price-card">
+      <h3>Enterprise</h3>
+      <div class="price">Custom</div>
+      <p>SSO, dedicated tenancy, 24/7 support, SLA.</p>
+      <a href="login.html" class="btn btn-ghost">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 SecureFleet</span>
+    <span>Zero Trust Fleet Monitoring</span>
+  </div>
+</footer>
+</body>
+</html>
